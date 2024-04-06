@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import "./doc.css";
+import "./ViewEvent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsUp,
   faComment,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
+import Post from "../Listpost/Post";
 
-const Doc = () => {
+export default function ViewEvent() {
   const [isCommenting, setIsCommenting] = useState(false); // State để kiểm soát việc hiển thị ô nhập
 
   const toggleCommentBox = () => {
@@ -80,46 +81,50 @@ const Doc = () => {
     },
     // Thêm các bài đăng khác tương tự ở đây
   ];
-
   return (
-    <div className="blog">
-      <div className="content">
-        <div className="post-container">
-          {posts.map((post) => (
-            <div className="post" key={post.id}>
-              <div className="post-header">
-                <h2>Title: {post.title}</h2>
-                <span>Đăng bởi: {post.author}</span>
-              </div>
-              <p>{post.content}</p>
-              <span>Time: {post.timestamp}</span>
-              <hr />
-              <div className="post-interaction">
-                <button>
-                  <span className="icon">👍</span> Like
-                </button>
-                <button onClick={toggleCommentBox}>
-                  <span className="icon">💬</span> Comment
-                </button>
-              </div>
-              <hr />
-              {isCommenting && (
-                <form onSubmit={handleCommentSubmit}>
-                  <textarea
-                    className="comment-input"
-                    placeholder="Write a comment..."
-                  ></textarea>
-                  <button type="submit" className="comment-button">
-                    <FontAwesomeIcon icon={faPaperPlane} />
+    <div>
+      <h1 style={{ textAlign: "center", marginTop: "75px" }}>Tên Event</h1>{" "}
+      {/* Thêm tiêu đề của event */}
+      <div className="post-add" style={{ textAlign: "center" }}>
+        <Post></Post>
+      </div>
+      <div className="blog">
+        <div className="content">
+          <div className="post-container">
+            {posts.map((post) => (
+              <div className="post" key={post.id}>
+                <div className="post-header">
+                  <h2>Title: {post.title}</h2>
+                  <span>Đăng bởi: {post.author}</span>
+                </div>
+                <p>{post.content}</p>
+                <span>Time: {post.timestamp}</span>
+                <hr />
+                <div className="post-interaction">
+                  <button>
+                    <span className="icon">👍</span> Like
                   </button>
-                </form>
-              )}
-            </div>
-          ))}
+                  <button onClick={toggleCommentBox}>
+                    <span className="icon">💬</span> Comment
+                  </button>
+                </div>
+                <hr />
+                {isCommenting && (
+                  <form onSubmit={handleCommentSubmit}>
+                    <textarea
+                      className="comment-input"
+                      placeholder="Write a comment..."
+                    ></textarea>
+                    <button type="submit" className="comment-button">
+                      <FontAwesomeIcon icon={faPaperPlane} />
+                    </button>
+                  </form>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default Doc;
+}

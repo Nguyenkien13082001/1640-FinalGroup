@@ -8,17 +8,7 @@ export default function LayoutHome({ children }) {
   return (
     <div>
       <Header />
-
-      <Navbars
-        li={[
-          ["Home", "img/dashboard.svg"],
-          ["Account Management", "img/manage user.svg"],
-          ["Event Management", "img/restaurant.svg"],
-          ["Faculty Management", "img/manage  order.svg"],
-          ["Download", "img/download-902.svg"],
-          ["Chart", "img/chart-874.svg"],
-        ]}
-      />
+      <Navbars />
       <div className="ps-5">{children}</div>
       <div className="ps-5">
         <Footer />

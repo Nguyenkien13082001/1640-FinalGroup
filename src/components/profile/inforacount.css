@@ -1,0 +1,63 @@
+.user-profile {
+  width: 500px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: auto;
+}
+
+.user-profile img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 0 auto 30px;
+  display: block;
+}
+
+.user-profile h1 {
+  font-size: 38px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
+}
+
+.profile-info {
+  margin-bottom: 25px;
+}
+
+.profile-info label {
+  text-align: right;
+  margin-right: 30px;
+  font-weight: bold;
+  color: #131018;
+  font-size: 20px;
+}
+
+.profile-info span {
+  color: #000000;
+  margin-left: 15px;
+  font-size: 20px;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.edit-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #45a049;
+}

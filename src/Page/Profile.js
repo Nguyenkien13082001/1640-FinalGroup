@@ -13,16 +13,16 @@ export default function Profile() {
   return (
     <LayoutHome>
       <div style={{ height: "80vh" }}>
-        <NavbarProfile
-          li={[
-            ["Infor Accout", "img/dashboard.svg"],
-            ["Restautant’s", "img/restaurant.svg"],
-            ["Manage User’s", "img/manage user.svg"],
-            ["Manage Order’s", "img/manage  order.svg"],
-            ["Manage Coupon’s", "img/manage coupon.svg"],
-          ]}
-        ></NavbarProfile>
-        <InforAcount user={userData} />
+        {/* <NavbarProfile
+        // li={[
+        //   ["Infor Accout", "img/dashboard.svg"],
+        //   ["Restautant’s", "img/restaurant.svg"],
+        //   ["Manage User’s", "img/manage user.svg"],
+        //   ["Manage Order’s", "img/manage  order.svg"],
+        //   ["Manage Coupon’s", "img/manage coupon.svg"],
+        // ]}
+        ></NavbarProfile> */}
+        <InforAcount />
       </div>
     </LayoutHome>
   );

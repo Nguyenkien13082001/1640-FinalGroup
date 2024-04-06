@@ -1,0 +1,94 @@
+.post {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+  width: 100%; /* Đặt chiều rộng */
+  max-width: 1200px; /* Chiều rộng tối đa */
+  margin: 20px auto; /* Căn giữa và tạo khoảng cách với các bài viết khác */
+}
+
+.post:hover {
+  background-color: rgba(214, 223, 231, 0.411);
+  box-shadow: 1px 3px 10px rgba(255, 115, 0, 0.1);
+  border-radius: 20px;
+  /* font-size: 22px; */
+}
+
+.post h2 {
+  font-size: 1.5rem; /* Kích thước tiêu đề */
+  margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+}
+
+.post p {
+  color: #666; /* Màu chữ cho nội dung */
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-header h2 {
+  margin: 0; /* Loại bỏ margin của tiêu đề */
+}
+
+.post-header span {
+  color: #999; /* Màu chữ cho thông tin bài viết */
+}
+
+.post-interaction {
+  display: flex;
+  justify-content: start; /* Canh giữa ngang */
+  align-items: center; /* Canh giữa dọc */
+  margin-top: 10px; /* Thêm khoảng cách giữa nội dung và phần tương tác */
+}
+
+.post-interaction button {
+  padding: 8px 16px;
+  background-color: #f0f2f5; /* Màu nền */
+  border: none;
+  border-radius: 4px;
+  color: #65676b; /* Màu chữ */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.post-interaction button:hover {
+  background-color: #84baec; /* Màu nền hover */
+  color: black;
+}
+
+.post-interaction button .icon {
+  margin-right: 5px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+
+.post-interaction button:last-child {
+  margin-left: 10px; /* Khoảng cách giữa các nút */
+}
+.comment-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  background: transparent;
+  outline: none;
+  width: calc(100% - 90px); /* Chiều rộng ô nhập */
+  height: 45px;
+}
+
+.comment-button {
+  padding: 10px;
+
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  height: 45px; /* Chiều cao nút */
+  width: 80px; /* Chiều rộng nút */
+  position: absolute;
+}

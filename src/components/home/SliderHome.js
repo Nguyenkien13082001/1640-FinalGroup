@@ -4,7 +4,7 @@ import Slider1 from "./../../img/slider1.png";
 
 export default function SliderHome() {
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       {/* <Carousel style={{ marginTop: "66px", display: "flex" }}> */}
 
       <img

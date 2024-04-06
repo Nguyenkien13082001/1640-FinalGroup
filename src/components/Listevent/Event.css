@@ -1,0 +1,119 @@
+.blog {
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.post-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.post {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Thêm margin bottom để tạo khoảng cách giữa các bài đăng */
+  margin-top: 55px;
+  flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+  align-items: center; /* Căn giữa ngang */
+}
+
+.post-content {
+  text-align: center; /* Căn giữa nội dung */
+}
+
+.post-time {
+  width: 100%; /* Sử dụng toàn bộ chiều rộng của .post */
+  display: flex; /* Sử dụng flexbox */
+  justify-content: space-between; /* Căn giữa thời gian bắt đầu và kết thúc */
+  align-items: center; /* Căn giữa dọc */
+}
+
+.time-end {
+  flex: 1; /* Phần bằng nhau giữa thời gian bắt đầu và kết thúc */
+  text-align: right; /* Căn phải cho thời gian kết thúc */
+}
+
+.post p {
+  color: #666;
+}
+
+.post span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.post-interaction {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-interaction button {
+  padding: 8px 16px;
+  background-color: #f0f2f5;
+  border: none;
+  border-radius: 4px;
+  color: #65676b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.post-interaction button:hover {
+  background-color: #84baec;
+  color: black;
+}
+
+.post-interaction button .icon {
+  margin-right: 5px;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  background: transparent;
+  outline: none;
+  width: calc(100% - 90px);
+}
+
+.comment-button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  height: 40px;
+  width: 80px;
+}
+
+.btnViewPost {
+  width: 80px;
+  border-radius: 10%;
+  background-color: #00a4ff;
+}
+.btnViewPost:hover {
+  background-color: #abf8b4;
+  color: black;
+}
+
+.btnAddContributions {
+  width: 200px;
+  border-radius: 4%;
+  background-color: #00a4ff;
+  margin-left: 50px;
+}
+
+.btnAddContributions:hover {
+  background-color: #abf8b4;
+  color: black;
+}

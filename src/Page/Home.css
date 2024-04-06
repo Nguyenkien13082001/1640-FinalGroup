@@ -1,0 +1,4 @@
+.doc-container,
+.doc-container * {
+  pointer-events: none;
+}

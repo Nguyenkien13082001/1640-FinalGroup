@@ -17,13 +17,13 @@ html {
 }
 
 .footer-distributed {
-  background: #e0efef;
+  background: #ddfafa73;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   width: 100%;
   text-align: left;
   font: bold 16px sans-serif;
-  padding: 55px 50px;
+  padding: 35px 50px;
   position: absolute;
 }
 
@@ -149,7 +149,7 @@ html {
 
 .footer-distributed .footer-company-about span {
   display: block;
-  color: #ffffff;
+  color: #000000;
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 20px;
@@ -177,10 +177,9 @@ html {
 }
 /* Footer */
 .Slide-img {
-  width: 100%;
-  height: 65vh;
+  width: 80%;
+  height: 45vh;
   margin-top: 66px;
-  display: flex;
 }
 
 /* If you don't want the footer to be responsive, remove these media queries */
@@ -309,7 +308,7 @@ html {
 }
 
 /* css Inforaccout */
-.user-profile {
+/* .user-profile {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -333,14 +332,12 @@ html {
 .profile-info span {
   display: inline-block;
   width: calc(100% - 120px); /* 100% width minus label width and margin */
-  margin-left: 10px;
-}
 
-.button-container {
+/* .button-container {
   margin-top: 20px;
-}
+} */
 
-.edit-button {
+/* .edit-button {
   padding: 8px 16px;
   background-color: #007bff;
   color: white;
@@ -351,7 +348,7 @@ html {
 
 .edit-button:hover {
   background-color: #0056b3;
-}
+} */
 
 /* css nút tìm kiếm và login */
 .navbar-expand .navbar-collapse {

@@ -1,47 +1,73 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import logo from "./../../img/logoE.png";
-import "./../../style/style.css";
+import "./navbar.css";
+import { Link } from "react-router-dom";
 
-export default function Navbars({ li }) {
-  const [window, setWindow] = useState(false);
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  let openClose = () => {
-    if (window === false) {
-      setWindow(true);
-    } else {
-      setWindow(false);
-    }
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    window.location.href = "/";
+  };
+
   return (
-    <div>
-      <nav className="navbar-menu" style={{ width: window ? 250 : 60 }}>
-        <div className="burger" onClick={() => openClose()}>
-          <img src="img/menu.svg" alt="burger" />
-        </div>
-        <ul className="navbar__list p-0">
-          {li.map((item, i) => (
-            <div className="navbar__li-box" key={i}>
-              <img
-                src={item[1]}
-                alt={item[1]}
-                style={{ paddingLeft: window ? 27 : 17 }}
-              />
-              <li
-                className="navbar__li"
-                style={{ display: window ? "inline-block" : "none" }}
-              >
-                {item[0]}
-              </li>
-            </div>
-          ))}
-        </ul>
-      </nav>
+    <div className={`header ${isOpen ? "open" : ""}`}>
+      <div className="menu-toggle" onClick={toggleMenu}>
+        <div className="menu-icon"></div>
+        <div className="menu-icon"></div>
+        <div className="menu-icon"></div>
+      </div>
+      <div className="menu-items">
+        <NavItem
+          isOpen={isOpen}
+          imageSrc="img/dashboard.svg"
+          text="Home"
+          to="/home"
+        />
+        <NavItem
+          isOpen={isOpen}
+          imageSrc="img/manage user.svg"
+          text="Profile"
+          to="/profile"
+        />
+        <NavItem
+          isOpen={isOpen}
+          imageSrc="img/restaurant.svg"
+          text="List Event"
+          to="/ListEvent"
+        />
+
+        <NavItem
+          isOpen={isOpen}
+          imageSrc="img/logout.svg"
+          text="Logout"
+          onClick={handleLogout}
+        ></NavItem>
+      </div>
     </div>
   );
-}
+};
+
+const NavItem = ({ isOpen, imageSrc, text, to, onClick }) => {
+  return (
+    <div className="nav-item" style={{ cursor: "pointer" }}>
+      {isOpen ? (
+        <Link to={to} onClick={onClick}>
+          <img src={imageSrc} alt={text} />
+          <span>{text}</span>
+        </Link>
+      ) : (
+        <Link to={to} onClick={onClick}>
+          <img src={imageSrc} alt={text} />
+        </Link>
+      )}
+    </div>
+  );
+};
+
+export default Header;

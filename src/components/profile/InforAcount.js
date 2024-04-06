@@ -1,10 +1,28 @@
-import React from "react";
-import { Card, Button, Container, Row, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import apiClient from "../../api/apiClient";
+import "./inforacount.css";
+import Editprofile from "./Editprofile";
 
 function InforAcount(props) {
   // Thông tin tài khoản người dùng (có thể đặt từ props hoặc state)
-  const { name, email, address, phone } = props.user;
+  // const { Username, Email, DoB, Status } = props.user;
+  const [Listinfo, setListinfo] = useState({});
+  useEffect(() => {
+    getInfo();
+  }, []);
+  const getInfo = async () => {
+    try {
+      const response = await apiClient.get(
+        "https://magazine-web-670c.onrender.com/profile"
+      );
+      console.log("check", response);
+      setListinfo(response.data);
+    } catch (error) {}
+  };
 
+  const handleUpdateUser = () => {
+    getInfo();
+  };
   return (
     <div style={{ marginTop: "100px" }}>
       <div className="user-profile">
@@ -16,22 +34,21 @@ function InforAcount(props) {
         <h1>User Profile</h1>
         <div className="profile-info">
           <label>Name:</label>
-          <span>{name}</span>
+          <span>{Listinfo.name}</span>
         </div>
         <div className="profile-info">
           <label>Email:</label>
-          <span>{email}</span>
+          <span>{Listinfo.email}</span>
         </div>
         <div className="profile-info">
-          <label>Address:</label>
-          <span>{address}</span>
+          <label>Faculty:</label>
+          <span>{Listinfo.faculty && Listinfo.faculty.faculty_name}</span>
         </div>
-        <div className="profile-info">
-          <label>Phone:</label>
-          <span>{phone}</span>
-        </div>
-        <div className="button-container">
-          <button className="edit-button">Edit Profile</button>
+        <div>
+          <Editprofile
+            user={Listinfo}
+            onUpdateUser={handleUpdateUser}
+          ></Editprofile>
         </div>
       </div>
     </div>
