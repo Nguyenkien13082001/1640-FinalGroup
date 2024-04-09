@@ -20,7 +20,7 @@ html {
   background: #ddfafa73;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
-  width: 100%;
+  width: -webkit-fill-available;
   text-align: left;
   font: bold 16px sans-serif;
   padding: 35px 50px;

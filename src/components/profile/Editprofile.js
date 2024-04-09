@@ -14,7 +14,7 @@ export default function Editprofile({ user, onUpdateUser }) {
   const [formData, setFormData] = useState({
     name: user.name,
     email: user.email,
-    // dob: user.DoB,
+    image: user.image,
     oldPassword: "",
     newPassword: "",
     confirm_password: "",
@@ -28,33 +28,56 @@ export default function Editprofile({ user, onUpdateUser }) {
     }));
   };
 
+  const handleImageChange = (file) => {
+    console.log(file);
+    const selectedImageFile = file[0];
+    setFormData((prevData) => ({
+      ...prevData,
+      image: selectedImageFile,
+    }));
+  };
+
   useEffect(() => {
     setFormData({
       name: user.name,
       email: user.email,
-      //   dob: user.DoB,
+      image: user.image,
     });
   }, [user]);
 
   const handleSave = async () => {
-    if (formData.confirm_password != formData.newPassword) {
+    if (formData.confirm_password !== formData.newPassword) {
       toast.error("New password does not match");
     } else {
       try {
-        // Kiểm tra mật khẩu cũ
+        // Tạo formData mới để tránh việc gửi cùng formData ban đầu
+        const formDataToSend = new FormData();
+        formDataToSend.append("name", formData.name);
+        formDataToSend.append("email", formData.email);
+        // Kiểm tra và thêm oldPassword
+        if (formData.oldPassword) {
+          formDataToSend.append("oldPassword", formData.oldPassword);
+        }
 
-        // Gọi API để cập nhật thông tin người dùng
-        await apiClient.post(
-          "https://magazine-web-670c.onrender.com/edit-profile",
-          formData
-        );
-        console.log("thành công ", formData);
-        onUpdateUser(); // Gọi callback để thông báo cho component cha
+        // Kiểm tra và thêm newPassword
+        if (formData.newPassword) {
+          formDataToSend.append("newPassword", formData.newPassword);
+        }
+
+        formDataToSend.append("image", formData.image);
+        console.log("image", formDataToSend);
+        await apiClient({
+          method: "post",
+          url: "https://magazine-web-670c.onrender.com/edit-profile",
+          data: formDataToSend,
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+
+        onUpdateUser();
         toast.success("Update Success");
         handleClose();
       } catch (error) {
         toast.error("Old password is incorrect");
-        // toast.error(error.reponse.data.message);
       }
     }
   };
@@ -91,15 +114,31 @@ export default function Editprofile({ user, onUpdateUser }) {
                 onChange={handleInputChange}
               />
             </Form.Group>
-            {/* <Form.Group controlId="formDob">
-              <Form.Label>DOB</Form.Label>
+
+            <Form.Group controlId="formImage">
+              <Form.Label>Image</Form.Label>
               <Form.Control
-                type="text"
-                name="dob"
-                value={formData.dob}
-                onChange={handleInputChange}
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleImageChange(e.target.files)}
               />
-            </Form.Group> */}
+            </Form.Group>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              {/* Kiểm tra nếu có ảnh mới thì hiển thị */}
+              {formData.image && formData.image instanceof Blob ? (
+                <img
+                  style={{ width: "250px", height: "350px", marginTop: "10px" }}
+                  src={URL.createObjectURL(formData.image)}
+                  alt="User Avatar"
+                />
+              ) : user.image ? ( // Kiểm tra nếu có ảnh cũ thì hiển thị
+                <img
+                  style={{ width: "250px", height: "350px", marginTop: "10px" }}
+                  src={user.image}
+                  alt="User Avatar"
+                />
+              ) : null}
+            </div>
 
             <Form.Group controlId="formOldPass">
               <Form.Label>OldPass</Form.Label>

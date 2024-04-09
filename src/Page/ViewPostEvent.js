@@ -2,10 +2,9 @@
 // import LayoutHome from "../layouts/LayoutHome";
 // import ViewEvent from "../components/Listevent/ViewEvent";
 
-// export default function ViewPost() {
+// export default function ViewPostEvent() {
 //   return (
 //     <LayoutHome>
-//       {" "}
 //       <div>
 //         <ViewEvent></ViewEvent>
 //       </div>

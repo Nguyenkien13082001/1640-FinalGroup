@@ -1,37 +1,99 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import { toast } from "react-toastify";
+import { Toast } from "react-bootstrap";
+import apiClient from "../../api/apiClient";
 
-export default function Post() {
+export default function Post({ getPosts }) {
   const [show, setShow] = useState(false);
-  const [file, setFile] = useState(null); // State để lưu trữ file được chọn
-  const [isChecked, setIsChecked] = useState(false); // State để lưu trạng thái của checkbox
+  const [image, setImage] = useState(null);
+  const [file, setDoc] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
+  const [caption, setCaption] = useState("");
+  const [description, setDescription] = useState("");
+  const [posts, setPosts] = useState([]);
+  const [isAnonymous, setIsAnonymous] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setFile(selectedFile); // Lưu file được chọn vào state
+  const getCurrentUrlLastSegment = () => {
+    const currentUrl = window.location.href;
+    const urlSegments = currentUrl.split("/");
+    const lastSegment = urlSegments[urlSegments.length - 1];
+    return lastSegment;
   };
 
-  const handleUpload = () => {
-    // Xử lý logic tải lên file ở đây
-    handleClose(); // Đóng modal sau khi tải lên thành công
+  const event_id = getCurrentUrlLastSegment();
+
+  const handleImageFileChange = (file) => {
+    const selectedImageFile = file.target.files[0];
+    console.log(selectedImageFile);
+    setImage(selectedImageFile);
   };
 
-  const handleResetFile = () => {
-    setFile(null); // Xóa file hiện tại khi người dùng muốn chọn lại
+  const handleDocFileChange = (file) => {
+    const selectedDocFile = file.target.files[0];
+    setDoc(selectedDocFile);
   };
 
-  const isImageFile = (file) => {
-    return file && file.type.startsWith("image"); // Kiểm tra xem file có phải là hình ảnh hay không
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "caption") {
+      setCaption(value);
+    } else if (name === "description") {
+      setDescription(value);
+    }
+  };
+
+  const handleUpload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("caption", caption);
+      formData.append("description", description);
+      formData.append("event", event_id);
+      formData.append("image", image);
+      formData.append("file", file);
+      formData.append("is_anonymous", isAnonymous.toString());
+      console.log("form nè >", formData);
+      await apiClient({
+        method: "post",
+        url: "https://comp1640.pythonanywhere.com/add_post",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      toast.success("Add Post Success");
+      getPosts();
+      handleClose();
+    } catch (error) {
+      console.log("Lỗi rồi", error.message);
+    }
+
+    handleClose();
   };
 
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked); // Khi người dùng click vào checkbox, cập nhật trạng thái của checkbox
+    setIsChecked(!isChecked);
   };
+
+  const handleToggleAnonymous = () => {
+    setIsAnonymous(!isAnonymous);
+  };
+
+  const handleClose = () => {
+    resetForm(); // Reset form khi đóng modal
+
+    setShow(false);
+  };
+
+  const resetForm = () => {
+    setCaption("");
+    setDescription("");
+    setImage(null);
+    setDoc(null);
+    setIsChecked(false);
+    setIsAnonymous(false);
+  };
+  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -47,32 +109,51 @@ export default function Post() {
           <Form>
             <Form.Group controlId="formGridTitle">
               <Form.Label>Title</Form.Label>
-              <Form.Control type="text" placeholder="Enter Title" />
+              <Form.Control
+                type="text"
+                name="caption"
+                placeholder="Enter Title"
+                value={caption}
+                onChange={handleInputChange}
+              />
             </Form.Group>
 
             <Form.Group controlId="formGridContent">
               <Form.Label>Content</Form.Label>
-              <Form.Control type="text" placeholder="Enter Content" />
+              <Form.Control
+                as="textarea" // Thay đổi thành textarea
+                rows={2} // Số hàng cho phép hiển thị
+                name="description"
+                placeholder="Enter Content"
+                value={description}
+                onChange={handleInputChange}
+              />
             </Form.Group>
 
             <Form.Group controlId="formGridFile">
-              <Form.Label>Document</Form.Label>
-              {file && isImageFile(file) ? ( // Kiểm tra nếu file là hình ảnh thì hiển thị ảnh
-                <>
-                  <img
-                    src={URL.createObjectURL(file)}
-                    alt="Uploaded Image"
-                    style={{ width: "100%", marginBottom: "10px" }}
-                  />
-                  <Button variant="primary" onClick={handleResetFile}>
-                    Delete File
-                  </Button>
-                </>
-              ) : (
-                <Form.Control type="file" onChange={handleFileChange} /> // Nếu không, hiển thị phần select file bình thường
-              )}
+              <Form.Label>Choose Image</Form.Label>
+              <Form.Control
+                type="file"
+                accept="image/*"
+                onChange={handleImageFileChange}
+              />
             </Form.Group>
-
+            <Form.Group controlId="formGridContent">
+              <Form.Label>Upload Document</Form.Label>
+              <Form.Control
+                type="file"
+                accept=".doc, .docx"
+                onChange={handleDocFileChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="formGridCheckbox">
+              <Form.Check
+                type="checkbox"
+                label="Post anonymously"
+                checked={isAnonymous}
+                onChange={handleToggleAnonymous}
+              />
+            </Form.Group>
             <Form.Group controlId="formGridCheckbox">
               <Form.Check
                 type="checkbox"
@@ -91,7 +172,7 @@ export default function Post() {
             style={{ width: "150px" }}
             variant="primary"
             onClick={handleUpload}
-            disabled={!isChecked} // Kích hoạt nút Save Changes chỉ khi checkbox được chọn
+            disabled={!isChecked}
           >
             Save Changes
           </Button>

@@ -67,3 +67,8 @@
 .nav-item a {
   text-decoration: none; /* Loại bỏ gạch chân dưới các liên kết */
 }
+
+.seticon {
+  color: black;
+  font-size: 25px;
+}

@@ -55,13 +55,12 @@
 
 .post-interaction {
   display: flex;
-  justify-content: start; /* Canh giữa ngang */
-  align-items: center; /* Canh giữa dọc */
+  justify-content: space-around;
   margin-top: 10px; /* Thêm khoảng cách giữa nội dung và phần tương tác */
 }
 
 .post-interaction button {
-  padding: 8px 16px;
+  padding: 6px 10px;
   background-color: #f0f2f5; /* Màu nền */
   border: none;
   border-radius: 4px;
@@ -69,6 +68,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .post-interaction button:hover {
@@ -117,4 +117,41 @@
   font-size: 14px; /* Kích thước chữ của nút Add post */
   padding: 8px 16px; /* Kích thước nút Add post */
   border-radius: 4px; /* Độ cong góc của nút Add post */
+}
+/* Phần container chứa các bình luận */
+/* Style cho container chứa các bình luận */
+/* Container chứa tất cả các bình luận */
+.comments-container {
+  margin-top: 20px;
+}
+
+/* Style cho mỗi bình luận */
+.comment {
+  display: flex; /* Hiển thị các phần tử bình luận theo chiều ngang */
+  justify-content: start; /* Xếp các phần tử trong bình luận theo chiều dọc */
+  gap: 5px; /* Khoảng cách giữa các phần tử trong bình luận */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  margin-bottom: 5px;
+}
+
+/* Style cho tên tác giả */
+.comment-author {
+  font-weight: bold;
+}
+
+/* Style cho nội dung bình luận */
+.comment-text {
+  padding-left: 10px; /* Thụt vào so với tên tác giả */
+}
+
+/* Style cho thời gian tạo bình luận */
+.comment-time {
+  font-size: 12px;
+  font-style: italic;
+  color: #888;
+  align-self: flex-end; /* Căn phải của phần tử thời gian */
+  margin-left: auto; /* Dịch chuyển phần tử thời gian sang bên phải */
 }

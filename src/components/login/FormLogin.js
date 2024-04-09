@@ -71,7 +71,7 @@ function FormLogin() {
       // console.log(response.data.user.accessToken);
       if (
         response.data.user.role === "user" ||
-        response.data.user.role == "student"
+        response.data.user.role === "student"
       ) {
         localStorage.setItem("accessToken", response.data.user.accessToken);
         localStorage.setItem("role", response.data.user.role);
@@ -110,7 +110,7 @@ function FormLogin() {
       } catch (error) {
         console.log(error);
         // Xử lý lỗi tại đây
-        toast.error("This email already exists!");
+        toast.error(error.response.data.error);
       }
     }
   };
@@ -127,8 +127,12 @@ function FormLogin() {
             activeTab === "login" ? handleLoginSubmit : handleRegisterSubmit
           }
         >
-          <img style={{ width: "80px", height: "80px" }} src={logo} alt="" />
-          <h2 style={{ color: "Highlight" }}>Welcome to Edusmart</h2>
+          <img
+            style={{ width: "80px", height: "80px" }}
+            src="https://cdn.haitrieu.com/wp-content/uploads/2022/12/Icon-Truong-Dai-hoc-Greenwich-Viet-Nam.png"
+            alt=""
+          />
+          <h2 style={{ color: "Highlight" }}>Welcome to GreenWich Blog</h2>
           <h1>{activeTab === "login" ? "Sign In" : "Sign Up"}</h1>
           {activeTab === "register" && (
             <input
