@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -8,24 +8,32 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "./../../img/logoE.png";
 import "./../../style/style.css";
 import { Link } from "react-router-dom";
+import apiClient from "../../api/apiClient"; // Import thư viện gọi API
 
 export default function Header(li) {
-  const [search, setSearch] = useState();
-  console.log(search);
+  const [search, setSearch] = useState("");
+
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setSearch(value);
+    setSearch(event.target.value);
   };
-  const handleClick = () => {
-    alert(search);
-  };
+  useEffect(() => {
+    const posts = document.getElementsByClassName("post");
+    for (let i = 0; i < posts.length; i++) {
+      const postTitle = posts[i]
+        .getElementsByTagName("h6")[0]
+        .innerText.toLowerCase();
+      if (postTitle.indexOf(search.toLowerCase()) === -1) {
+        posts[i].style.display = "none";
+      } else {
+        posts[i].style.display = "block";
+      }
+    }
+  }, [search]);
+
   return (
     <div className="Nav ">
       <Navbar
         style={{
-          // padding: 3,
-          // boxShadow: "1px 3px 8px #333",
-          // backgroundColor: "#f8f9fa",
           position: "fixed",
           top: 0,
           right: 0,
@@ -36,8 +44,6 @@ export default function Header(li) {
           boxShadow: "1px 1px 5px #333",
           zIndex: 1000,
         }}
-        // // expand="lg"
-        // className="bg-body-tertiary ps-5 pe-2 "
       >
         <Container style={{ backgroundColor: "#f8f9fa" }} fluid>
           <Link to="/home">
@@ -50,46 +56,6 @@ export default function Header(li) {
           </Link>
 
           <Navbar.Collapse id="navbarScroll">
-            {/* <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            >
-              <Link to="/" className="Nav-Link">
-                Home
-              </Link>
-              <Link to="/creattopic" className="Nav-Link">
-                Create Topic
-              </Link>
-              <Link to="/profile" className="Nav-Link">
-                Mock Exam
-              </Link>
-              <Link to="#action2" className="Nav-Link">
-                Class 10
-              </Link>
-              <Link to="#action2" className="Nav-Link">
-                Class 11
-              </Link>
-              <Link to="#action2" className="Nav-Link">
-                {" "}
-                Class 12
-              </Link>
-              {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
-                  Something else here
-                </NavDropdown.Item>
-              </NavDropdown> */}
-
-            {/* <nav>
-              <Button variant="outline-success">
-                <Link to="/login">Log in/Sign up</Link>
-              </Button>
-            </nav> */}
             <div className="SreachLogin">
               <div>
                 <Form className="d-flex">
@@ -101,10 +67,9 @@ export default function Header(li) {
                     className="me-2"
                     aria-label="Search"
                     onChange={handleChange}
+                    value={search}
                   />
-                  <Button variant="outline-success" onClick={handleClick}>
-                    Search
-                  </Button>
+                  <Button variant="outline-success">Search</Button>
                 </Form>
               </div>
 
@@ -115,27 +80,7 @@ export default function Header(li) {
                   bottom: 0,
                   marginBottom: "15px",
                 }}
-              >
-                {/* <Button
-                  style={{
-                    marginLeft: "15px",
-                    width: "130px",
-                    padding: "5px 0",
-                  }}
-                  variant="outline-primary"
-                >
-                  <Link
-                    to="/login"
-                    style={{
-                      textDecoration: "none",
-                      color: "Black",
-                      padding: "5px 10px",
-                    }}
-                  >
-                    Log in/Sign up
-                  </Link>
-                </Button> */}
-              </div>
+              ></div>
             </div>
           </Navbar.Collapse>
         </Container>

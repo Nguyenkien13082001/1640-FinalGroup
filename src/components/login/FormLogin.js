@@ -75,6 +75,7 @@ function FormLogin() {
       ) {
         localStorage.setItem("accessToken", response.data.user.accessToken);
         localStorage.setItem("role", response.data.user.role);
+        localStorage.setItem("user_id", response.data.user._id);
         setIsLoggedIn(true);
         navigate("/home");
         toast.success("Login successful!");

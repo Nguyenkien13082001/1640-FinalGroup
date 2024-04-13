@@ -1,10 +1,12 @@
+/* inforacount.css */
 .user-profile {
-  width: 500px;
+  max-width: 500px; /* Cho phép tự động điều chỉnh kích thước trên các thiết bị nhỏ */
+  width: 100%; /* Tự động co giãn theo kích thước màn hình */
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  margin: auto;
+  margin: 40px auto;
 }
 
 .user-profile img {
@@ -16,19 +18,22 @@
 }
 
 .user-profile h1 {
-  font-size: 38px;
-  margin-bottom: 30px;
+  font-size: 28px; /* Nhỏ hơn một chút trên thiết bị di động */
+  margin-bottom: 20px;
   text-align: center;
   color: #333;
 }
 
 .profile-info {
+  display: flex;
+  justify-content: flex-start; /* Căn chỉnh các thành phần sang trái */
+  align-items: center; /* Giữ các thành phần ở giữa theo chiều dọc */
   margin-bottom: 25px;
 }
 
 .profile-info label {
-  text-align: right;
-  margin-right: 30px;
+  margin-right: 20px; /* Thêm khoảng cách giữa label và span */
+  white-space: nowrap; /* Đảm bảo label không bị wrap nếu dài */
   font-weight: bold;
   color: #131018;
   font-size: 20px;
@@ -36,8 +41,12 @@
 
 .profile-info span {
   color: #000000;
-  margin-left: 15px;
   font-size: 20px;
+  flex-grow: 1; /* Cho phép span mở rộng để chiếm không gian còn lại */
+}
+.profile-info span {
+  color: #000000;
+  margin-left: 15px; /* Giữ nguyên khoảng cách */
 }
 
 .button-container {
@@ -52,7 +61,7 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 18px;
+  font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -60,4 +69,39 @@
 
 .edit-button:hover {
   background-color: #45a049;
+}
+
+/* Thêm Media Queries để cải thiện Responsive */
+@media (max-width: 600px) {
+  .profile-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .user-profile {
+    padding: 20px;
+  }
+
+  .user-profile img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .user-profile h1 {
+    font-size: 22px;
+  }
+
+  .profile-info label {
+    margin-right: 0; /* Không cần khoảng cách bên phải cho thiết bị nhỏ */
+    margin-bottom: 5px; /* Thêm khoảng cách dưới label trên thiết bị nhỏ */
+  }
+
+  .profile-info label,
+  .profile-info span {
+    font-size: 14px; /* Giảm kích thước font cho thiết bị nhỏ */
+  }
+
+  .edit-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }

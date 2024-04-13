@@ -26,16 +26,6 @@ function InforAcount(props) {
   return (
     <div style={{ marginTop: "100px" }}>
       <div className="user-profile">
-        {/* <img
-          style={{ height: "100px", width: "100px" }}
-          src={
-            Listinfo.image
-              ? Listinfo.image
-              : "https://icons.iconarchive.com/icons/papirus-team/papirus-status/512/avatar-default-icon.png"
-          }
-          alt=""
-        /> */}
-
         <img src={Listinfo.image} alt="" />
         <h1>User Profile</h1>
         <div className="profile-info">
