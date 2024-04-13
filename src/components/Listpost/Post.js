@@ -65,7 +65,8 @@ export default function Post({ getPosts }) {
       getPosts();
       handleClose();
     } catch (error) {
-      console.log("Lỗi rồi", error.message);
+      toast.error(error.response.data.message);
+      console.log(error);
     }
 
     handleClose();
