@@ -88,7 +88,7 @@ export default function Post({ getPosts }) {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      toast.success("Post added successfully");
+      toast.success(response.message);
       getPosts();
       handleClose();
     } catch (error) {
