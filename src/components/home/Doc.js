@@ -259,6 +259,9 @@ const Doc = () => {
             {posts &&
               posts.map((post) => (
                 <div className="post" key={post.id}>
+                  <h4 style={{ textAlign: "center", color: "#4498df" }}>
+                    Event: {post.event_name}
+                  </h4>
                   <div className="post-header">
                     <h2>
                       <img
@@ -277,9 +280,9 @@ const Doc = () => {
                       />
                     </h2>
 
-                    <h6>Title: {post.caption}</h6>
+                    {/* <h6>Title: {post.caption}</h6> */}
                   </div>
-                  <p>{post.content}</p>
+                  {/* <p>{post.content}</p> */}
                   <span>
                     <img
                       style={{
@@ -294,26 +297,45 @@ const Doc = () => {
                     {post.created_at}
                   </span>
                   <hr />
-                  <div>
+                  {/* <div>
                     <p>{post.description}</p>
+                  </div> */}
+
+                  <div
+                    style={{
+                      display: "grid",
+                    }}
+                  >
+                    {post.file !== "null" &&
+                      post.file
+                        .split(",")
+                        .map((file) => (
+                          <a href={file}>
+                            {file.substring(file.lastIndexOf("/") + 1)}
+                          </a>
+                        ))}
                   </div>
 
-                  <div>
-                    {post.file !== "null" && (
-                      <a href={post.file}>
-                        {post.file.substring(post.file.lastIndexOf("/") + 1)}
-                      </a>
-                    )}
-                  </div>
-
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    {post.image !== "null" && (
-                      <img
-                        style={{ width: "300px", height: "400px" }}
-                        src={post.image}
-                        alt=""
-                      />
-                    )}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    {post.image !== "null" &&
+                      post.image !== "" &&
+                      post.image.split(",").map((image) => (
+                        <img
+                          style={{
+                            width: "300px",
+                            height: "400px",
+                            margin: "10px",
+                          }}
+                          src={image}
+                          alt=""
+                        />
+                      ))}
                   </div>
                   <hr />
 
