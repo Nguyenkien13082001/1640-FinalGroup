@@ -18,6 +18,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Guest from "./Page/Guest";
 import LayoutHome from "./layouts/LayoutHome";
+import PendingPage from "./Page/PendingPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -32,6 +33,7 @@ root.render(
         <Route path="home" element={<Home />} />
         <Route path="ListEvent" element={<ListEvent />} />
         <Route path="ListPost" element={<Post />} />
+        <Route path="Pending" element={<PendingPage />} />
         <Route path="ViewEvent/:param" element={<ViewEvent />} />
 
         {/* <Route path="Viewpost/:param" element={<ViewPost />} /> */}

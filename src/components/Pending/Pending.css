@@ -1,0 +1,211 @@
+.post-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-container .post-add {
+  margin-top: 20px; /* Đặt khoảng cách giữa nút Add post và các bài đăng */
+}
+
+.post-container .post-add button {
+  font-size: 14px; /* Kích thước chữ của nút Add post */
+  padding: 8px 16px; /* Kích thước nút Add post */
+  border-radius: 4px; /* Độ cong góc của nút Add post */
+}
+
+.post {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+  width: 100%; /* Đặt chiều rộng */
+  max-width: 1200px; /* Chiều rộng tối đa */
+  margin: 20px auto; /* Căn giữa và tạo khoảng cách với các bài viết khác */
+}
+
+.post:hover {
+  background-color: rgba(214, 223, 231, 0.411);
+  box-shadow: 1px 3px 10px rgba(255, 115, 0, 0.1);
+  border-radius: 20px;
+  /* font-size: 22px; */
+}
+
+.post h2 {
+  font-size: 1.5rem; /* Kích thước tiêu đề */
+  margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+}
+
+.post p {
+  color: #666; /* Màu chữ cho nội dung */
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-header h2 {
+  margin: 0; /* Loại bỏ margin của tiêu đề */
+}
+
+.post-header span {
+  color: #999; /* Màu chữ cho thông tin bài viết */
+}
+
+.post-interaction {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px; /* Thêm khoảng cách giữa nội dung và phần tương tác */
+}
+
+.post-interaction button {
+  padding: 6px 10px;
+  background-color: #f0f2f5; /* Màu nền */
+  border: none;
+  border-radius: 4px;
+  color: #65676b; /* Màu chữ */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-interaction button:hover {
+  background-color: #84baec; /* Màu nền hover */
+  color: black;
+}
+
+.post-interaction button .icon {
+  margin-right: 5px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+
+.post-interaction button:last-child {
+  margin-left: 10px; /* Khoảng cách giữa các nút */
+}
+.comment-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+  background: transparent;
+  outline: none;
+  width: calc(100% - 90px); /* Chiều rộng ô nhập */
+  height: 45px;
+  margin-right: 10px; /* Khoảng cách bên phải */
+  position: relative; /* Đặt vị trí tương đối cho ô nhập */
+  z-index: 1;
+}
+
+.comment-input:focus {
+  border-color: #4b7bec;
+  box-shadow: 0 0 0 1px #4b7bec;
+}
+
+.comment-input1 {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-left: 10px;
+  margin-top: -7px;
+}
+
+.comment-input1:hover {
+  border-color: #aaa;
+}
+
+.comment-input1:focus {
+  border-color: #4b7bec;
+  box-shadow: 0 0 0 1px #4b7bec;
+}
+
+.comment-button {
+  padding: 10px;
+
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  height: 45px; /* Chiều cao nút */
+  width: 80px; /* Chiều rộng nút */
+  position: absolute;
+}
+
+.post-container .post-add {
+  margin-top: 20px;
+  /* Đặt khoảng cách giữa nút Add post và các bài đăng */
+}
+
+.post-container .post-add button {
+  font-size: 14px; /* Kích thước chữ của nút Add post */
+  padding: 8px 16px; /* Kích thước nút Add post */
+  border-radius: 4px; /* Độ cong góc của nút Add post */
+}
+/* Phần container chứa các bình luận */
+/* Style cho container chứa các bình luận */
+/* Container chứa tất cả các bình luận */
+.comments-container {
+  margin-top: 20px;
+}
+
+/* Style cho mỗi bình luận */
+.comment {
+  display: flex; /* Hiển thị các phần tử bình luận theo chiều ngang */
+  justify-content: start; /* Xếp các phần tử trong bình luận theo chiều dọc */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  margin-bottom: 5px;
+  position: relative; /* Đặt vị trí tương đối để các phần tử con có thể được định vị tuyệt đối bên trong */
+}
+
+/* Style cho nút "Edit" và "Delete" */
+.comment-actions {
+  position: absolute; /* Đặt vị trí tuyệt đối để nút "Edit" và "Delete" được đặt đúng vị trí */
+  bottom: 5px; /* Đặt khoảng cách với phía dưới của bình luận */
+  left: 0px;
+}
+
+.comment-actions button {
+  padding: 5px 30px; /* Kích thước nút */
+  margin-right: 15px; /* Khoảng cách giữa các nút */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding-left: 0px;
+  background-color: #f5f5f5;
+  color: black;
+  font-size: 13px;
+}
+
+.comment-actions button:hover {
+  background-color: #eee; /* Màu nền khi di chuột qua */
+}
+
+/* Style cho tên tác giả */
+.comment-author {
+  font-weight: bold;
+}
+
+/* Style cho nội dung bình luận */
+.comment-text {
+  padding-left: 10px; /* Thụt vào so với tên tác giả */
+}
+
+/* Style cho thời gian tạo bình luận */
+.comment-time {
+  font-size: 12px;
+  font-style: italic;
+  color: #888;
+  position: absolute; /* Đặt vị trí tuyệt đối cho thời gian */
+  bottom: 5px; /* Khoảng cách từ trên xuống */
+  right: 20px; /* Khoảng cách từ phải sang */
+}

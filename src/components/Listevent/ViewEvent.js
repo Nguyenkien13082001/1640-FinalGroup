@@ -339,9 +339,9 @@ const ViewEvent = () => {
                         />
                       </h2>
 
-                      <h6>Title: {post.caption}</h6>
+                      {/* <h6>Title: {post.caption}</h6> */}
                     </div>
-                    <p>{post.content}</p>
+                    {/* <p>{post.content}</p> */}
                     <span>
                       <img
                         style={{
@@ -356,9 +356,9 @@ const ViewEvent = () => {
                       {post.created_at}
                     </span>
                     <hr />
-                    <div>
+                    {/* <div>
                       <p>{post.description}</p>
-                    </div>
+                    </div> */}
 
                     <div>
                       {post.file !== "null" && (
@@ -368,14 +368,25 @@ const ViewEvent = () => {
                       )}
                     </div>
 
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      {post.image !== "null" && ( // Kiểm tra nếu có ảnh
-                        <img
-                          style={{ width: "300px", height: "400px" }}
-                          src={post.image}
-                          alt=""
-                        />
-                      )}
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      {post.image !== "null" &&
+                        post.image.split(",").map((image) => (
+                          <img
+                            style={{
+                              width: "300px",
+                              height: "400px",
+                              margin: "10px",
+                            }}
+                            src={image}
+                            alt=""
+                          />
+                        ))}
                     </div>
                     <hr />
 

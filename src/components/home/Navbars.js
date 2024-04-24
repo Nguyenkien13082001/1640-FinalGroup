@@ -5,6 +5,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { MdEventAvailable } from "react-icons/md";
 import { AiOutlineLogout } from "react-icons/ai";
+import { MdOutlinePending } from "react-icons/md";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -47,6 +48,12 @@ const Header = () => {
           imageSrc=<MdEventAvailable className="seticon" />
           text="List Event"
           to="/ListEvent"
+        />
+        <NavItem
+          isOpen={isOpen}
+          imageSrc=<MdOutlinePending className="seticon" />
+          text="Pending Post"
+          to="/Pending"
         />
 
         <NavItem

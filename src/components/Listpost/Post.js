@@ -8,11 +8,12 @@ import apiClient from "../../api/apiClient";
 
 export default function Post({ getPosts }) {
   const [show, setShow] = useState(false);
-  const [image, setImage] = useState(null);
-  const [file, setDoc] = useState(null);
+  const [images, setImages] = useState([]);
+  const [documents, setDocuments] = useState([]);
+  // const [file, setDoc] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
-  const [caption, setCaption] = useState("");
-  const [description, setDescription] = useState("");
+  // const [caption, setCaption] = useState("");
+  // const [description, setDescription] = useState("");
   const [posts, setPosts] = useState([]);
   const [isAnonymous, setIsAnonymous] = useState(false);
 
@@ -25,53 +26,75 @@ export default function Post({ getPosts }) {
 
   const event_id = getCurrentUrlLastSegment();
 
-  const handleImageFileChange = (file) => {
-    const selectedImageFile = file.target.files[0];
-    console.log(selectedImageFile);
-    setImage(selectedImageFile);
+  const handleImageFileChange = (event) => {
+    setImages([...event.target.files]);
   };
 
-  const handleDocFileChange = (file) => {
-    const selectedDocFile = file.target.files[0];
-    setDoc(selectedDocFile);
+  const handleDocFileChange = (event) => {
+    setDocuments([...event.target.files]);
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "caption") {
-      setCaption(value);
-    } else if (name === "description") {
-      setDescription(value);
-    }
-  };
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   if (name === "caption") {
+  //     setCaption(value);
+  //   } else if (name === "description") {
+  //     setDescription(value);
+  //   }
+  // };
+
+  // const handleUpload = async () => {
+  //   try {
+  //     const formData = new FormData();
+  //     // formData.append("caption", caption);
+  //     // formData.append("description", description);
+  //     formData.append("event", event_id);
+  //     formData.append("image", images);
+  //     formData.append("file", documents);
+  //     formData.append("is_anonymous", isAnonymous.toString());
+  //     console.log("form nè >", formData);
+  //     await apiClient({
+  //       method: "post",
+  //       url: "http://192.168.1.167:5000/add_post",
+  //       data: formData,
+  //       headers: { "Content-Type": "multipart/form-data" },
+  //     });
+  //     toast.success("Add Post Success");
+  //     getPosts();
+  //     handleClose();
+  //   } catch (error) {
+  //     toast.error(error.response.data.message);
+  //     console.log(error);
+  //   }
+
+  //   handleClose();
+  // };
 
   const handleUpload = async () => {
+    const formData = new FormData();
+    images.forEach((image) => {
+      formData.append("images", image);
+    });
+    documents.forEach((document) => {
+      formData.append("documents", document);
+    });
+    formData.append("is_anonymous", isAnonymous.toString());
+    formData.append("event", event_id);
+
     try {
-      const formData = new FormData();
-      formData.append("caption", caption);
-      formData.append("description", description);
-      formData.append("event", event_id);
-      formData.append("image", image);
-      formData.append("file", file);
-      formData.append("is_anonymous", isAnonymous.toString());
-      console.log("form nè >", formData);
-      await apiClient({
+      const response = await apiClient({
         method: "post",
         url: "https://comp1640.pythonanywhere.com/add_post",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      toast.success("Add Post Success");
+      toast.success("Post added successfully");
       getPosts();
       handleClose();
     } catch (error) {
-      toast.error(error.response.data.message);
-      console.log(error);
+      toast.error("Error adding post: " + error.response.data.message);
     }
-
-    handleClose();
   };
-
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
@@ -87,10 +110,10 @@ export default function Post({ getPosts }) {
   };
 
   const resetForm = () => {
-    setCaption("");
-    setDescription("");
-    setImage(null);
-    setDoc(null);
+    // setCaption("");
+    // setDescription("");
+    setImages(null);
+    setDocuments(null);
     setIsChecked(false);
     setIsAnonymous(false);
   };
@@ -108,7 +131,7 @@ export default function Post({ getPosts }) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group controlId="formGridTitle">
+            {/* <Form.Group controlId="formGridTitle">
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
@@ -117,9 +140,9 @@ export default function Post({ getPosts }) {
                 value={caption}
                 onChange={handleInputChange}
               />
-            </Form.Group>
+            </Form.Group> */}
 
-            <Form.Group controlId="formGridContent">
+            {/* <Form.Group controlId="formGridContent">
               <Form.Label>Content</Form.Label>
               <Form.Control
                 as="textarea" // Thay đổi thành textarea
@@ -129,13 +152,14 @@ export default function Post({ getPosts }) {
                 value={description}
                 onChange={handleInputChange}
               />
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group controlId="formGridFile">
               <Form.Label>Choose Image</Form.Label>
               <Form.Control
                 type="file"
                 accept="image/*"
+                multiple
                 onChange={handleImageFileChange}
               />
             </Form.Group>
@@ -144,6 +168,7 @@ export default function Post({ getPosts }) {
               <Form.Control
                 type="file"
                 accept=".doc, .docx"
+                multiple
                 onChange={handleDocFileChange}
               />
             </Form.Group>
