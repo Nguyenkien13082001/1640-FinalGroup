@@ -60,7 +60,7 @@ const Doc = () => {
   const getPosts = async () => {
     try {
       const response = await apiClient.get(
-        "https://comp1640.pythonanywhere.com/get_posts" // API endpoint để lấy tất cả các bài đăng
+        "https://comp1640.pythonanywhere.com/get_posts/guests" // API endpoint để lấy tất cả các bài đăng
       );
       console.log("homec", response);
       setPosts(response); // Cập nhật state posts với dữ liệu nhận được từ API
