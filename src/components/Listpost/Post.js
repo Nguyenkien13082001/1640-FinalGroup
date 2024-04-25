@@ -72,12 +72,17 @@ export default function Post({ getPosts }) {
 
   const handleUpload = async () => {
     const formData = new FormData();
-    images.forEach((image) => {
-      formData.append("images", image);
-    });
-    documents.forEach((document) => {
-      formData.append("documents", document);
-    });
+    if (images.length !== 0) {
+      images.forEach((image) => {
+        formData.append("images", image);
+      });
+    }
+    if (documents.length !== 0) {
+      documents.forEach((document) => {
+        formData.append("documents", document);
+      });
+    }
+
     formData.append("is_anonymous", isAnonymous.toString());
     formData.append("event", event_id);
 
