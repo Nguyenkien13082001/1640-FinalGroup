@@ -361,7 +361,7 @@ const ViewEvent = () => {
                     </div> */}
 
                     <div>
-                      {post.file !== "null" && (
+                      {post.file !== "null" && post.file !== null && (
                         <a href={post.file}>
                           {post.file.substring(post.file.lastIndexOf("/") + 1)}
                         </a>
@@ -376,6 +376,7 @@ const ViewEvent = () => {
                       }}
                     >
                       {post.image !== "null" &&
+                        post.image !== null &&
                         post.image.split(",").map((image) => (
                           <img
                             style={{
