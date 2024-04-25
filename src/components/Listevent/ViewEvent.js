@@ -361,11 +361,15 @@ const ViewEvent = () => {
                     </div> */}
 
                     <div>
-                      {post.file !== "null" && post.file !== null && (
-                        <a href={post.file}>
-                          {post.file.substring(post.file.lastIndexOf("/") + 1)}
-                        </a>
-                      )}
+                      {post.file &&
+                        post.file !== "null" &&
+                        post.file !== null && (
+                          <a href={post.file}>
+                            {post.file.substring(
+                              post.file.lastIndexOf("/") + 1
+                            )}
+                          </a>
+                        )}
                     </div>
 
                     <div
@@ -375,7 +379,8 @@ const ViewEvent = () => {
                         flexWrap: "wrap",
                       }}
                     >
-                      {post.image !== "null" &&
+                      {post.image &&
+                        post.image !== "null" &&
                         post.image !== null &&
                         post.image.split(",").map((image) => (
                           <img
